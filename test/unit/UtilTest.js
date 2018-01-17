@@ -1,4 +1,4 @@
-describe("Factorial", function()
+/*describe("Factorial", function()
 {
     var testCases = [
         {
@@ -68,3 +68,4 @@ describe("Arrangement", function()
         })
     });
 })
+*/
