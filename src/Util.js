@@ -5,15 +5,21 @@ Util = {};
  * @param {number} n
  * @returns {number}
  */
-Util.factorial = function(n)
-{
-    if (n >= 100)
-    {
-        throw "Unable to compute factorial for n > 100"
+Util.factorial = function(n) {
+
+    if (n < 0) {
+        throw 'Unable to compute factorial for n < 0'
     }
 
-    if (n === 0)
-    {
+    if (!(typeof n === "number") || Math.floor(n) !== n) {
+        throw 'Unable to compute factorial of non integer values'
+    }
+
+    if (n >= 100) {
+        throw 'Unable to compute factorial for n > 100'
+    }
+
+    if (0 === n) {
         return 1;
     }
 
@@ -29,11 +35,25 @@ Util.factorial = function(n)
  */
 Util.arrangement = function(n, r)
 {
+    if(n < r)
+    {
+        throw 'r can\'t be greater than n'
+    }
+
+    if (!(typeof n === "number") || Math.floor(n) !== n || !(typeof r === "number") || Math.floor(r) !== r)
+    {
+        throw 'Unable to compute arrangement of non integer values'
+    }
+
+    if (n >= 20) {
+        throw 'Unable to compute arrangement for n > 20'
+    }
+
     if(n == r)
     {
-        return 1;
+        return Util.factorial(n);
     }
-    return n * Util.arrangement((n - 1)/(n - r - 1));
+    return Util.factorial(n)/Util.factorial(n - r);
 };
 
 /**
@@ -43,20 +63,56 @@ Util.arrangement = function(n, r)
  * @param {number} r
  * @returns {number}
  */
-Util.combination = function(n, r) {
+Util.combination = function(n, r)
+{
+    if(n < r)
+    {
+        throw 'r can\'t be greater than n'
+    }
 
+    if (!(typeof n === "number") || Math.floor(n) !== n || !(typeof r === "number") || Math.floor(r) !== r)
+    {
+        throw 'Unable to compute combination of non integer values'
+    }
+
+    if (n >= 50) {
+        throw 'Unable to compute combination for n > 50'
+    }
+
+    if(n == r)
+    {
+        return 1;
+    }
+    return Util.factorial(n)/(Util.factorial(n - r)*Util.factorial(r));
 };
 
 /**
  * Détermine si n est un nombre premier.
- * Util.isPrime(5) => false
- * Util.isPrime(6) => true
+ * Util.isPrime(5) => true
+ * Util.isPrime(6) => false
  *
  * @param {number} n
  * @returns {boolean}
  */
-Util.isPrime = function(n) {
+Util.isPrime = function(n)
+{
+    if (n < 0) {
+        throw 'Unable to compute isPrime for n < 0'
+    }
 
+    if (!(typeof n === "number") || Math.floor(n) !== n) {
+        throw 'Unable to compute isPrime of non integer values'
+    }
+    if(n < 2)
+        return false;
+    if(n == 2)
+        return true;
+    for(var i = 2; i < n; i++)
+    {
+        if(n % i === 0)
+            return false;
+    }
+    return true;
 };
 
 
@@ -69,8 +125,23 @@ Util.isPrime = function(n) {
  * @param {number} n
  * @returns {number}
  */
-Util.sumPrime = function(n) {
+Util.sumPrime = function(n)
+{
+    if (n < 2) {
+        throw 'Unable to compute sumPrime for n < 2'
+    }
 
+    if (!(typeof n === "number") || Math.floor(n) !== n) {
+        throw 'Unable to compute sumPrime of non integer values'
+    }
+
+    var sum = 0;
+    for(var i = 2; i < n; i++)
+    {
+        if(Util.isPrime(i))
+            sum += i;
+    }
+    return sum;
 };
 
 /**
@@ -85,8 +156,37 @@ Util.sumPrime = function(n) {
  * @param {number} n
  * @returns {array}
  */
-Util.fizzBuzz = function(n) {
+Util.fizzBuzz = function(n)
+{
+    if (n < 0) {
+        throw 'Unable to compute sumPrime for n < 0'
+    }
 
+    if (!(typeof n === "number") || Math.floor(n) !== n) {
+        throw 'Unable to compute sumPrime of non integer values'
+    }
+
+    var tab = [];
+    for(var i = 1; i < n+1 ; i++)
+    {
+        if(i%15 === 0)
+        {
+            tab.push("FizzBuzz");
+            continue;
+        }
+        if(i%5 === 0)
+        {
+            tab.push("Buzz");
+            continue;
+        }
+        if(i%3 === 0)
+        {
+            tab.push("Fizz");
+            continue;
+        }
+        tab.push(i);
+    }
+    return tab;
 };
 
 /**
@@ -98,6 +198,22 @@ Util.fizzBuzz = function(n) {
  * @param phrase
  * @returns {string}
  */
-Util.cipher = function (phrase) {
+Util.cipher = function (phrase)
+{
+    if (!(typeof phrase === "string") || /\d/.test(phrase)) {
+        throw 'Unable to compute cipher of string values'
+    }
 
+    var newPhrase = "";
+    for(var i = 0 ; i < phrase.length ; i++)
+    {
+        switch (phrase.charAt(i).charCodeAt(0))
+        {
+            case 90: newPhrase+='A';
+            case 122: newPhrase+='a';
+            case ' '.charCodeAt(0): newPhrase+=' ';
+            default: newPhrase+=String.fromCharCode(phrase.charAt(i).charCodeAt(0) + 1);
+        }
+    }
+        return newPhrase;
 };
