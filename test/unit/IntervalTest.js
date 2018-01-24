@@ -1,26 +1,9 @@
-/*describe("Interval - overlapping", function () {
-    testedInterval = new Interval(10, 20);
-
-    [
-        new Interval(8, 12),
-        new Interval(15, 16),
-        new Interval(17, 22),
-        new Interval(10, 20),
-        new Interval(8, 21)
-
-    ].forEach(function (interval) {
-        it("should overlaps " + testedInterval.toString() + " and " + interval.toString(), function () {
-            expect(testedInterval.overlaps(interval)).toBeTruthy();
+describe("Includes", function()
+{
+    var intervalle1 = new Interval(1,12);
+    var intervalle2 = new Interval(4,6);
+        it("should returns true when intervalle2 is in intervalle1", function () {
+            var result = intervalle1.includes(intervalle2);
+            expect(result).toBe(true);
         });
-    });
-
-    [
-        new Interval(8, 9),
-        new Interval(21, 22)
-
-    ].forEach(function (interval) {
-        it("should not overlaps " + testedInterval.toString() + " and " + interval.toString(), function () {
-            expect(testedInterval.overlaps(interval)).toBeFalsy();
-        });
-    });
-});*/
+})
