@@ -23,7 +23,15 @@ Interval.prototype.overlaps = function (interval) {
  * @returns {boolean}
  */
 Interval.prototype.includes = function (interval) {
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     return this.start <= interval.start && interval.end <= this.end;
+=======
+    return this.start < interval.start && this.end > interval.end;
+>>>>>>> Stashed changes
+=======
+    return this.start < interval.start && this.end > interval.end;
+>>>>>>> Stashed changes
 };
 
 /**
