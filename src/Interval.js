@@ -32,7 +32,19 @@ Interval.prototype.includes = function (interval) {
  * @returns {Interval[]}
  */
 Interval.prototype.union = function (interval) {
-
+    var tabRetour = [];
+    if(this.overlaps(interval))
+    {
+        var intervalle = new Interval(this.start,interval.end);
+        tabRetour.push(intervalle);
+        return tabRetour;
+    }
+    else
+    {
+        tabRetour.push(this);
+        tabRetour.push(interval);
+        return tabRetour;
+    }
 };
 
 /**
