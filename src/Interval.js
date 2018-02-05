@@ -72,7 +72,18 @@ Interval.prototype.intersection = function (interval) {
  * @returns {Interval[]}
  */
 Interval.prototype.exclusion = function (interval) {
-
+    var tabRetour = [];
+    if(this.overlaps(interval))
+    {
+        var intervalle = new Interval(this.start,interval.start);
+        tabRetour.push(intervalle);
+        return tabRetour;
+    }
+    else
+    {
+        tabRetour.push(this);
+        return tabRetour;
+    }
 };
 
 
