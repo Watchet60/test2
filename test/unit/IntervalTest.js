@@ -62,3 +62,27 @@ describe("Intersection", function ()
         expect(f).toThrow('No intersection');
     });
 })
+
+// Exclusion
+describe("Exclusion", function ()
+{
+    var intervalle1 = new Interval(2,6);
+    var intervalle2 = new Interval(4,8);
+    var intervalle3 = new Interval(2,4);
+    var intervalle4 = new Interval(7,9);
+    var tabResultat = [];
+    var tabResultat2 = [];
+    tabResultat.push(intervalle3);
+    console.log(tabResultat);
+    it("should returns [[2,4]] when intervalle1 is exclusion with intervalle2", function () {
+        var result = intervalle1.exclusion(intervalle2);
+        console.log(result);
+        expect(result.toString()).toBe(tabResultat.toString());
+    });
+    tabResultat2.push(intervalle1);
+    it("should returns [[2,6]] when intervalle1 is exclusion with intervalle2", function () {
+        var result = intervalle1.exclusion(intervalle4);
+        console.log(result);
+        expect(result.toString()).toBe(tabResultat2.toString());
+    });
+})
