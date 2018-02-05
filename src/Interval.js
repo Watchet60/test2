@@ -53,7 +53,17 @@ Interval.prototype.union = function (interval) {
  * @returns {Interval|null}
  */
 Interval.prototype.intersection = function (interval) {
-
+    var tabRetour = [];
+    if(this.overlaps(interval))
+    {
+        var intervalle = new Interval(interval.start,this.end);
+        tabRetour.push(intervalle);
+        return tabRetour;
+    }
+    else
+    {
+        throw 'No intersection';
+    }
 };
 
 /**
